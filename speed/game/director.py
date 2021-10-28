@@ -1,102 +1,86 @@
+from time import sleep
 from game import constants
-from game.point import Point
+from game.score import Score
 
-class Actor:
-    """A visible, moveable thing that participates in the game. The responsibility of Actor is to keep track of its appearance, position 
-    and velocity in 2d space.
-
+class Director:
+    """A code template for a person who directs the game. The responsibility of 
+    this class of objects is to control the sequence of play.
+    
     Stereotype:
-        Information Holder
+        Controller
 
     Attributes:
-        _text (string): The textual representation of the actor.
-        _position (Point): The actor's position in 2d space.
-        _velocity (Point): The actor's speed and direction.
+        input_service (InputService): The input mechanism.
+        keep_playing (boolean): Whether or not the game can continue.
+        output_service (OutputService): The output mechanism.
+        score (Score): The current score.
     """
 
-    def __init__(self):
+    def __init__(self, input_service, output_service):
         """The class constructor.
         
         Args:
-            self (Actor): an instance of Actor.
+            self (Director): an instance of Director.
         """
-        self._text = ""
-        self._position = Point(0, 0)
-        self._velocity = Point(0, 0)
+        self._input_service = input_service
+        self._keep_playing = True
+        self._output_service = output_service
+        self._score = Score()
+        
+    def start_game(self):
+        """Starts the game loop to control the sequence of play.
+        
+        Args:
+            self (Director): an instance of Director.
+        """
+        while self._keep_playing:
+            self._get_inputs()
+            self._do_updates()
+            self._do_outputs()
+            sleep(constants.FRAME_LENGTH)
 
-    def get_position(self):
-        """Gets the actor's position in 2d space.
-        
-        Args:
-            self (Actor): an instance of Actor.
+    def _get_inputs(self):
+        """Gets the inputs at the beginning of each round of play. In this case,
+        that means getting the ...
 
-        Returns:
-            Point: The actor's position in 2d space.
-        """
-        return self._position
-    
-    def get_text(self):
-        """Gets the actor's textual representation.
-        
         Args:
-            self (Actor): an instance of Actor.
+            self (Director): An instance of Director.
+        """
+        pass
 
-        Returns:
-            string: The actor's textual representation.
-        """
-        return self._text
+    def _do_updates(self):
+        """Updates the important game information for each round of play. In 
+        this case, that means checking ... and updating the score.
 
-    def get_velocity(self):
-        """Gets the actor's speed and direction.
-        
         Args:
-            self (Actor): an instance of Actor.
+            self (Director): An instance of Director.
+        """
+        pass
+        
+    def _do_outputs(self):
+        """
 
-        Returns:
-            Point: The actor's speed and direction.
-        """
-        return self._velocity
-    
-    def move_next(self):
-        """Moves the actor to its next position according to its velocity. Will 
-        wrap the position from one side of the screen to the other when it 
-        reaches the boundary in either direction.
-        
         Args:
-            self (Actor): an instance of Actor.
+            self (Director): An instance of Director.
         """
-        x1 = self._position.get_x()
-        y1 = self._position.get_y()
-        x2 = self._velocity.get_x()
-        y2 = self._velocity.get_y()
-        x = 1 + (x1 + x2 - 1) % (constants.MAX_X - 1)
-        y = 1 + (y1 + y2 - 1) % (constants.MAX_Y - 1)
-        position = Point(x, y)
-        self._position = position
-    
-    def set_position(self, position):
-        """Updates the actor's position to the given one.
-        
-        Args:
-            self (Actor): An instance of Actor.
-            position (Point): The given position.
-        """
-        self._position = position
-    
-    def set_text(self, text):
-        """Updates the actor's text to the given value.
-        
-        Args:
-            self (Actor): An instance of Actor.
-            text (string): The given value.
-        """
-        self._text = text
+        self._output_service.clear_screen()
+        self._output_service.draw_actor(self.)
+        self._output_service.draw_actors(self.)
+        self._output_service.draw_actor(self._score)
+        self._output_service.flush_buffer()
 
-    def set_velocity(self, velocity):
-        """Updates the actor's velocity to the given one.
-        
-        Args:
-            self (Actor): An instance of Actor.
-            position (Point): The given velocity.
+    def _(self):
         """
-        self._velocity = velocity
+
+        Args:
+            self (Director): An instance of Director.
+        """
+        pass
+
+    def _(self):
+        """
+
+        Args:
+            self (Director): An instance of Director.
+        """
+        pass
