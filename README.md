@@ -39,5 +39,6 @@ root                    (project root folder)
 * Asciimatics 1.12.0
 
 ## Authors
+andrew Finlayson AFinlayson82@gmail.com 
 ---
 * # TODO: Add names and emails here
