@@ -21,7 +21,7 @@ class Snake:
         self._segments = []
         self._prepare_body()
     
-    def get_all(self):
+    def get_all(self): ### keep for director 
         """Gets all the snake's segments.
         
         Args:
