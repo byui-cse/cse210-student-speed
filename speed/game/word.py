@@ -8,7 +8,8 @@ class Word(Player):
     def get_words(self):
         pass
 
-    
+    def check_guess(self, guess):
+        pass
     
 
 
