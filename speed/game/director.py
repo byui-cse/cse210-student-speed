@@ -1,8 +1,10 @@
 from time import sleep
 from game import constants
-from game.food import Food
+from game.word import Word
 from game.score import Score
-from game.snake import Snake
+from game.buffer import Buffer
+import random
+
 
 class Director:
     """A code template for a person who directs the game. The responsibility of 
@@ -12,26 +14,26 @@ class Director:
         Controller
 
     Attributes:
-        food (Food): The snake's target.
+        Word (Food): The snake's target.
         input_service (InputService): The input mechanism.
         keep_playing (boolean): Whether or not the game can continue.
         output_service (OutputService): The output mechanism.
         score (Score): The current score.
-        snake (Snake): The player or snake.
+        Buffer (Snake): The player or snake.
     """
 
     def __init__(self, input_service, output_service):
-        """The class constructor.
+        """The class constructor. 
         
         Args:
             self (Director): an instance of Director.
         """
-        self._food = Food()
+        self._word = Word()
         self._input_service = input_service
         self._keep_playing = True
         self._output_service = output_service
         self._score = Score()
-        self._snake = Snake()
+        self._buffer = Buffer()
         
     def start_game(self):
         """Starts the game loop to control the sequence of play.
@@ -47,13 +49,14 @@ class Director:
 
     def _get_inputs(self):
         """Gets the inputs at the beginning of each round of play. In this case,
-        that means getting the desired direction and moving the snake.
+        that means getting the letter input from user. 
 
         Args:
             self (Director): An instance of Director.
         """
-        direction = self._input_service.get_direction()
-        self._snake.move_head(direction)
+        # set key equal to input service get letter
+        return self._input_service.get_letters() # 
+        # self._snake.move_head(direction)
 
     def _do_updates(self):
         """Updates the important game information for each round of play. In 
@@ -64,6 +67,9 @@ class Director:
         """
         self._handle_body_collision()
         self._handle_food_collision()
+        # pass key to add_letter to the buffer
+        # loop through each word in words
+        # set word.move_word
         
     def _do_outputs(self):
         """Outputs the important game information for each round of play. In 
