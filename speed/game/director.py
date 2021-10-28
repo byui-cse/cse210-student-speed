@@ -55,31 +55,37 @@ class Director:
             self (Director): An instance of Director.
         """
 
-        # set key equal to input service get letter
+        # set key equal to input service get letter self._buffer.get_letter())
         wordLocation = self._input_service.get_letters() 
-
+        # return letter from key event presed
         # pass key to add_letter to buffer
         # self._buffer.move_word(wordLocation)
+        # create a word
+        # save a wrd 
 
     def _do_updates(self):
         """Updates the important game information for each round of play. In 
-        this case, that means checking for a collision and updating the score.
+        this case, that means checking for correcct words / letter and updating the score.
 
         Args:
             self (Director): An instance of Director.
         """
-        
         # pass key to add_letter to the buffer
-        # loop through each word in words check words with dictionary boolean?
-        # send info to points 
-        # update points
-        # set word.move_word
+        self._get_inputs.word.checkWord(self._word)
         
+        # a class loop through each word in words checkWords with dictionary boolean? 
+        #   or check word with slice tell a class to check the letter for a match
+        # a class check buffer for [] find any words in buffer
+        # a class word [] loop if in buffer take word away
+        # a Class word resets word to a new word   self._word.reset()   
+        # a class adds word to a new spot location  self._word.get_position() or set word.move_word
+        # send info to points  self._word.get_points()
+        # update points self._score.add_points(points)
+     
         
     def _do_outputs(self):
         """Outputs the important game information for each round of play. In 
-        this case, that means checking if there are stones left and declaring 
-        the winner.
+        this case, that means checking if correct words, 
 
         Args:
             self (Director): An instance of Director.
@@ -92,34 +98,6 @@ class Director:
         self._output_service.draw_actor(self._score)
         self._keep_playing = False
         self._output_service.flush_buffer()
+    
 
 
-
-    # def _handle_body_collision(self):
-    #     """Handles collisions between the snake's head and body. Stops the game 
-    #     if there is one.
-
-    #     Args:
-    #         self (Director): An instance of Director.
-    #     """
-    #     head = self._snake.get_head()
-    #     body = self._snake.get_body()
-    #     for segment in body:
-    #         if head.get_position().equals(segment.get_position()):
-    #             self._keep_playing = False
-    #             break
-
-    # def _handle_food_collision(self):
-    #     """Handles collisions between the snake's head and the food. Grows the 
-    #     snake, updates the score and moves the food if there is one.
-
-    #     Args:
-    #         self (Director): An instance of Director.
-    #     """
-    #     head = self._snake.get_head()
-    #     if head.get_position().equals(self._food.get_position()):
-    #         points = self._food.get_points()
-    #         for n in range(points):
-    #             self._snake.grow_tail()
-    #         self._score.add_points(points)
-    #         self._food.reset() 
