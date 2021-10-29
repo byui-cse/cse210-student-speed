@@ -35,6 +35,11 @@ class Director:
         self._score = Score()
         self._buffer = Buffer()
         
+
+        self._words = [Word() for i in range(STARTING_WORDS)]
+        # for i in range (STARTING_WORDS):
+            #self._words.append(Word())
+        
     def start_game(self):
         """Starts the game loop to control the sequence of play.
         
@@ -47,6 +52,8 @@ class Director:
             self._do_outputs()
             sleep(constants.FRAME_LENGTH)
 
+
+
     def _get_inputs(self):
         """Gets the inputs at the beginning of each round of play. In this case,
         that means getting the letter input from user. 
@@ -55,16 +62,18 @@ class Director:
             self (Director): An instance of Director.
         """
 
+       
+        
+
         # set key equal to input service get letter self._buffer.get_letter())
-        wordLocation = self._input_service.get_letters() 
+        letter = self._input_service.get_letters() 
+    
         # return letter from key event presed
-        # pass key to add_letter to buffer
-        # self._buffer.move_word(wordLocation)
-        # create a word
-        # save a wrd 
+        return letter
+
 
     def _do_updates(self):
-        """Updates the important game information for each round of play. In 
+        """Updates the game information for each round of play. In 
         this case, that means checking for correcct words / letter and updating the score.
 
         Args:
@@ -92,12 +101,19 @@ class Director:
         """
         
         self._output_service.clear_screen()
-        self._output_service.draw_actor(self._word)
-        self._output_service.draw_actors(self._buffer.get_all())
+        self._output_service.draw_actor(self._word, #word list???) 
+        self._output_service.draw_actors(self._buffer)
         self._output_service.draw_actors(self.points)
         self._output_service.draw_actor(self._score)
-        self._keep_playing = False
         self._output_service.flush_buffer()
     
+
+
+ self._keep_playing = False
+
+     # pass key to add_letter to buffer
+        # self._buffer.move_word(wordLocation)
+        # create a word
+        # save a wrd 
 
 
