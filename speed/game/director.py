@@ -3,7 +3,7 @@ from time import sleep
 from game.word import Word
 from game.score import Score
 from game.buffer import Buffer
-from speed.game import word
+
 
 
 class Director:
