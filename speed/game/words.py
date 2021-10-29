@@ -5,7 +5,13 @@ import random
 
 class Words:
     """ This creats a list of words from the words.txt file. It then chooses 5 random words from 
-    that file. """
+    that file. 
+    
+    """
+    def __init__(self):
+
+        
+        pass
 
     def game_words(self):
         
