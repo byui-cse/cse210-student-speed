@@ -25,6 +25,11 @@ class Word(ImportService):
         
         Args:
             self (Word): An instance of word.
+        pass
+
+    def check_guess(self, guess):
+        pass
+    
 
         Returns:
             list: The word's letters.
