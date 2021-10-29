@@ -1,7 +1,9 @@
-from game.player import ImportService
+from game.actor import Actor
+from game.buffer import Buffer
+from game import constants
 import random
 
-class Word(ImportService):
+class Word(Actor):
     """A floating collection of letters. The responsibility of Word is keep track of its segments. 
     It contains methods for moving and growing among others.
 
@@ -30,7 +32,6 @@ class Word(ImportService):
     def check_guess(self, guess):
         pass
     
-
         Returns:
             list: The word's letters.
         """
@@ -39,8 +40,24 @@ class Word(ImportService):
             allText = file.read()
             words = list(map(str, allText.split()))
   
-            # print random string
-            print(random.choice(words))
+            # print random string of 5 words in self.goal_words list
+            for n in range(1,5):
+                self.goal_words.append(random.choice(words)) 
+
+            return self.goal_words  
+
+
+    def check_guess(self, Buffer):
+        """Prepares the word guess by adding letters.
+        
+        Args:
+            self (Word): an instance of Word.
+        """
+        for word in self.goal_words:
+            if word in Buffer:
+                return True
+            else:
+                False
 
     def reset_goal_words(self):
-        pass
+        self.goal_words = []
