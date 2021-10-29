@@ -28,12 +28,6 @@ class Word(Actor):
         Args:
             self (Word): An instance of word.
         pass
-
-    def check_guess(self, guess):
-        pass
-    
-        Returns:
-            list: The word's letters.
         """
         # Open the file in read mode
         with open("words.txt", "r") as file:
@@ -46,12 +40,14 @@ class Word(Actor):
 
             return self.goal_words  
 
-
     def check_guess(self, Buffer):
         """Prepares the word guess by adding letters.
         
         Args:
             self (Word): an instance of Word.
+
+        Returns:
+            list: The word's letters.
         """
         for word in self.goal_words:
             if word in Buffer:
