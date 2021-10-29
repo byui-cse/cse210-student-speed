@@ -32,12 +32,12 @@ class Director:
         words = self._word.get_words()
 
         #capture player input get letter
-        self.letter = self._input_service.get_letter()
+        self._buffer.get_letter()
         
 
     def do_updates(self):
         #add letter to buffer(list)
-        self.buffer.set_buffer(self.letter)
+        self.buffer.set_buffer()
         #check words agenst dictionary for boolian
         if self._word.check_guess(self._buffer.get_buffer):
             #pass boolian to points
