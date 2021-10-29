@@ -14,12 +14,18 @@ class Score(Actor):
 
     # Larry
     def __init__(self):
-        # Need to call superclass
-        # call all attributes
-        # set postion equal to 1,0 using the Point class
-        # self.set_postion(position)
-        # self.set_text(as shown in requirements)
-        pass
+        """
+        The class constructor. INvokes the superclass constructor, initializes points to zero, sets
+        the position and updates the text.
+
+        Args:
+            self (Score): An instance of score        
+        """
+        super().__init__()
+        self._points = 0
+        position = Point(1, 0)
+        self.set_position(position)
+        self.set_text(f"Score: {self._points}")
 
     # Vanessa
     def add_points(self, points):

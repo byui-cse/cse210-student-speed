@@ -43,4 +43,5 @@ root                    (project root folder)
 Josh Wassum was21005@byui.edu
 Brian Bawden brianbawden001@gmail.com
 Vanessa Buzzell buz20001@byui.edu
+Larry COpeland cop21004@byui.edu
 
