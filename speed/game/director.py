@@ -2,8 +2,8 @@ from game import constants
 from time import sleep
 from game.word import Word
 from game.score import Score
-from game.player import Player
 from game.buffer import Buffer
+from speed.game import word
 
 
 class Director:
@@ -12,7 +12,6 @@ class Director:
     def __init__(self, input_service, output_service):
         self._word = Word()
         self.score = Score()
-        self.player = Player()
         self._buffer = Buffer()
         self._keep_playing = True
         self._output_service = output_service
@@ -32,7 +31,8 @@ class Director:
         words = self._word.get_words()
 
         #capture player input get letter
-        self._buffer.get_letter()
+        self._buffer.set_letter()
+        self.letter = self._buffer.get_letter()
         
 
     def do_updates(self):
@@ -42,7 +42,9 @@ class Director:
         if self._word.check_guess(self._buffer.get_buffer):
             #pass boolian to points
             #update points
-            self.points.update_points()
+            self.score.add_points(5)
+        if self.letter == '*':
+            self._word.reset_goal_words()
 
 
     def do_outputs(self):
