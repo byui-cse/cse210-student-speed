@@ -23,7 +23,7 @@ class Actor():
         Args:
             self (Actor): an instance of Actor
         '''
-        self._text = ""
+        self._text = ''
         self._position = Point(0, 0)
         self._velocity = Point(0, 0)
         
@@ -79,8 +79,8 @@ class Actor():
         x2 = self._velocity.get_x()
         y2 = self._velocity.get_y()
 
-        x = 1 + (x1 + x2 - 1)
-        y = 1 + (y1 + y2 - 1)
+        x = 1 + (x1 + x2 - 1) % (constants.MAX_X - 1)
+        y = 1 + (y1 + y2 - 1) % (constants.MAX_Y - 1)
 
         position = Point(x,y)
         self._position = position

@@ -1,5 +1,4 @@
 from game.actor import Actor
-from game.buffer import Buffer
 from game import constants
 from game.point import Point
 import random
@@ -22,29 +21,19 @@ class Word(Actor):
             self (Word): An instance of word.
         """
         super().__init__()
-        self.goal_words = []
-        self._points = 0
-        self.set_text("@")
-        self.reset_goal_words()
+        self._word = ""
+        #self._points = 0
+        #self.set_text("@")
+        self.reset()
     
-    def get_words(self):
+    def get_word(self):
         """Gets all the actor's words.
         
         Args:
             self (Word): An instance of word.
         pass
-        """
-        # Open the file in read mode
-        words = constants.LIBRARY
-        # with open("/words.txt", "r") as file:
-            # allText = file.read()
-            # words = list(map(str, allText.split()))
-  
-        # select random string of 5 words in self.goal_words list
-        for n in range(1,5):
-            self.goal_words.append(random.choice(words)) 
-
-        return self.goal_words  
+        """      
+        return self._word
 
     def check_guess(self, Buffer):
         """Prepares the word guess by adding letters.
@@ -55,22 +44,22 @@ class Word(Actor):
         Returns:
             list: The word's letters.
         """
-        for word in self.goal_words:
-            if word in Buffer:
-                return True
-            else:
-                False
+        if self._word in Buffer:
+            return True
+        else:
+            return False
 
-    def reset_goal_words(self):
+    def reset(self):
         """Resets the words by moving them to random positions within the boundaries of the
         screen and reassigning a new random list of five words.
         
         Args:
             self (Word): an instance of Word.
         """
-        self.goal_words = []
-        self.goal_words.append(random.choice(words)) 
+        self._word = random.choice(constants.LIBRARY)
+
         x = random.randint(1, constants.MAX_X -2)
-        y = random.randint(1, constants.MAX_Y - 2)
-        position = Point(x, y)
-        self.set_position(position)
+        y = random.randint(1, constants.MAX_Y - 2)        
+        self.set_position(Point(x, y))
+        self.set_velocity(Point(1, 0))
+        self.set_text(self._word)
