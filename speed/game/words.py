@@ -9,14 +9,34 @@ class Words:
     
     """
     def __init__(self):
-
+        """ this is the class constructor
         
-        pass
-
-    def game_words(self):
+        args:  self (Words)  and instance of words
         
+        """
+        super().__init__()
+        self.letters()
+        self.trial_words = []
+        self._prepare_body() #using this from snake. this will put the letters on the screen
+        
+
+    def get_words(self):
+        """ this gets the words from the txt file and splits them in to a list. 
+        
+        Args: self (Words) and instance of words
+         Returns: list of words
+        """
 
         with open('words.txt','r') as w:
             w.strip().split(',')
             words = random.sample(w, 5)
-        return words     
+        return words  
+
+    def get_letters(self,get_words):
+        """ I want this to take the list of random words created in get_words
+        and take each word string and seperate it in to letters. """
+
+        self.get_words = get_words
+
+        return list(get_words) # I want to take eachstring and seperate it in to individual 
+                                #letters, i'm not sure this will do it. 
