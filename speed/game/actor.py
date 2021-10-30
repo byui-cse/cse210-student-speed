@@ -23,7 +23,7 @@ class Actor:
         self._text = ""
         self._position = Point(0, 0)
         self._velocity = Point(0, 0)
-
+        
     def get_position(self):
         """Gets the actor's position in 2d space.
         

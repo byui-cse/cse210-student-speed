@@ -9,21 +9,21 @@ class Score(Actor):
         Information Holder
 
     Attributes: 
-        _points (integer): The number of points the food is worth.
+        _points (integer): The number of points the word is worth.
     """
-
-  
     def __init__(self):
-        # Need to call superclass
-        # call all attributes
-        # set postion equal to 1,0 using the Point class
-        # self.set_postion(position)
-        # self.set_text(as shown in requirements)
-        pass
-
-  
+        """The class constructor. Invokes the superclass constructor, initializes points to zero, sets the position and updates the text.
+        
+        Args:
+            self (Score): an instance of Score.
+        """
+        super().__init__()
+        self._points = 0
+        position = Point(1, 0)
+        self.set_position(position)
+        self.set_text(f"Score: {self._points}")
+    
     def add_points(self, points):
-
         """Adds the given points to the running total and updates the text.
         
         Args:
@@ -32,5 +32,3 @@ class Score(Actor):
         """
         self._points += points
         self.set_text(f"Score: {self._points}")
-
-        pass
