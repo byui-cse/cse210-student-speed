@@ -41,3 +41,8 @@ root                    (project root folder)
 ## Authors
 ---
 * # TODO: Add names and emails here
+Morgan Allen - morganallen@byui.edu
+Mitchell Ball - bal20049@byui.edu
+Ben Cornia - bencornia@byui.edu
+Daniel Emerson - eme20003@byui.edu
+Heidi Wiseman - wiseman2star@gmail.com
