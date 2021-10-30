@@ -38,7 +38,10 @@ class Director:
         self._buffer = Buffer()
         self._letter = ""
 
-        
+        # Initial 5 words
+        for i in range(5):
+            self._words.append(Word())
+
     def start_game(self):
         """Starts the game loop to control the sequence of play.
         
