@@ -35,16 +35,16 @@ class Word(Actor):
         pass
         """
         # Open the file in read mode
-        with constants.LIBRARY as words: 
+        words = constants.LIBRARY
         # with open("/words.txt", "r") as file:
             # allText = file.read()
             # words = list(map(str, allText.split()))
   
-            # select random string of 5 words in self.goal_words list
-            for n in range(1,5):
-                self.goal_words.append(random.choice(words)) 
+        # select random string of 5 words in self.goal_words list
+        for n in range(1,5):
+            self.goal_words.append(random.choice(words)) 
 
-            return self.goal_words  
+        return self.goal_words  
 
     def check_guess(self, Buffer):
         """Prepares the word guess by adding letters.
