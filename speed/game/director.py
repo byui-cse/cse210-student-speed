@@ -26,7 +26,7 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
-        self._word = Word()
+        self._words = [Word() for i in range(5)]
         self.score = Score()
         self._buffer = Buffer()
         self._keep_playing = True
@@ -55,12 +55,18 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
+        letter = self._input_service.get_letter()
+        self._buffer.add_letter(letter)
+
+        if letter == '*':
+            self._buffer.clear_buffer()
         #grab words
-        words = self._word.get_words()
+        #words = self._word.get_words()
 
         #capture player input get letter
-        self._buffer.set_letter()
-        self.letter = self._buffer.get_letter()
+        #self._buffer.set_letter()
+        #self.letter = self._buffer.get_letter()
+        
         
 
     def do_updates(self):
@@ -72,14 +78,19 @@ class Director:
             self (Director): An instance of Director.
         """
         #add letter to buffer(list)
-        self.buffer.set_buffer()
+        #self._buffer.set_buffer()
         #check words agenst dictionary for boolean
-        if self._word.check_guess(self._buffer.get_buffer):
-            #pass boolean to points
-            #update points
-            self.score.add_points(5)
-        if self.letter == '*':
-            self._word.reset_goal_words()
+        buffer = self._buffer.get_buffer()
+        for word in self._words:
+            word.next_move()
+            if word.get_word() in buffer:
+                self.score.add_points(len(word.get_word()))
+                word.reset() 
+            elif word.get_position().get_x() > constants.MAX_X - len(word.get_word()):
+                word.reset() 
+         
+            
+        
 
 
     def do_outputs(self):
@@ -92,9 +103,11 @@ class Director:
         """
         #clear screen
         self._output_service.clear_screen()
-        #display words
-        self._output_service.draw_actor(self._word)
         #display points
-        self._output_service.draw_actor(self._score)
+        self._output_service.draw_actor(self.score)
+        #display words
+        self._output_service.draw_actors(self._words) 
+        #display buffer
+        self._output_service.draw_actor(self._buffer)
         #flush buffer
         self._output_service.flush_buffer()
