@@ -1,6 +1,6 @@
-from game.player import Player
+from game.actor import Actor
 
-class Buffer(Player):
+class Buffer(Actor):
     
     def __init__(self):
         self._word = ''
