@@ -19,7 +19,7 @@ class Buffer(Actor):
         self._buffer += letter
         self.set_text(f'- Buffer: {self._buffer}')
         
-        
+     
         
     def clear_buffer(self):
         self.set_position(Point(0, constants.MAX_Y))
