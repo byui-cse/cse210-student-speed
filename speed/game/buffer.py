@@ -18,7 +18,9 @@ class Buffer(Actor):
         # set the position equal to 1, MAX_Y using the Point class
         # self.set_postion(postion)
         # self.set_text(as demonstarted in requirements)
-        pass
+        
+        _text = ""
+        
 
     
     def add_letter(self, letter):
@@ -30,8 +32,8 @@ class Buffer(Actor):
             self (set_text): An instance of word.
             letter (letter): An instance of letter
         """
-        word = word + letter
-        self.set_text(f"Buffer: {word}")
+        #word = word + letter
+        #self.set_text(f"Buffer: {word}")
 
         pass
 

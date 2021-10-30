@@ -41,5 +41,4 @@ root                    (project root folder)
 ## Authors
 andrew Finlayson AFinlayson82@gmail.com
 Pierre Phil Bangay pierrephild@gmail.com
----
-* # TODO: Add names and emails here
+Jeremy Diamond socjeremyd@gmail.com
