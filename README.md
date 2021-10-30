@@ -42,3 +42,7 @@ root                    (project root folder)
 andrew Finlayson AFinlayson82@gmail.com
 Pierre Phil Bangay pierrephild@gmail.com
 Jeremy Diamond socjeremyd@gmail.com
+Ryder Garache gryderjose@gmail.com
+---
+* # TODO: Add names and emails here
+
