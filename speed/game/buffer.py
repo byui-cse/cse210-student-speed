@@ -51,7 +51,7 @@ class Buffer:
         if letter == "*":
             self._prepare_buffer()
         else:
-            self._add_segment(letter,Point(len(letter.get_text()),constants.MAX_Y), Point(0.0))
+            self._add_segment(letter,Point(len(letter),constants.MAX_Y), Point(0.0))
 
     def _add_segment(self, text, position, velocity):
         """Adds a new segment to the buffer using the given text, position and velocity.
