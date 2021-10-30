@@ -3,6 +3,7 @@ from time import sleep
 from game.word import Word
 from game.score import Score
 from game.buffer import Buffer
+from game.timer import Timer
 
 
 class Director:
@@ -32,14 +33,19 @@ class Director:
         self._keep_playing = True
         self._output_service = output_service
         self._input_service = input_service
+        # self.timer = Timer()
 
+    def start_timer(self, timer):
+        self._input_service.get_time()
+        timer.countdown()
 
-    def start_game(self):
+    def start_game(self, timer):
         """Starts the game loop to control the sequence of play.
         
         Args:
             self (Director): an instance of Director.
         """
+        self.start_timer(timer)
         while self._keep_playing:
             self.get_inputs()
             self.do_updates()
@@ -78,8 +84,8 @@ class Director:
             self (Director): An instance of Director.
         """
         #add letter to buffer(list)
-        #self._buffer.set_buffer()
-        #check words agenst dictionary for boolean
+        # self._buffer.set_buffer()
+        #check words against dictionary for boolean
         buffer = self._buffer.get_buffer()
         for word in self._words:
             word.next_move()
@@ -87,10 +93,7 @@ class Director:
                 self.score.add_points(len(word.get_word()))
                 word.reset() 
             elif word.get_position().get_x() > constants.MAX_X - len(word.get_word()):
-                word.reset() 
-         
-            
-        
+                word.reset()
 
 
     def do_outputs(self):
@@ -105,6 +108,8 @@ class Director:
         self._output_service.clear_screen()
         #display points
         self._output_service.draw_actor(self.score)
+        #display timer
+        self._output_service.draw_actor(self.timer)
         #display words
         self._output_service.draw_actors(self._words) 
         #display buffer
