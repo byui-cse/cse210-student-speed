@@ -56,10 +56,13 @@ class Director:
             self (Director): An instance of Director.
         """
         letter = self._input_service.get_letter()
+
         self._buffer.add_letter(letter)
 
         if letter == '*':
             self._buffer.clear_buffer()
+
+        
         #grab words
         #words = self._word.get_words()
 
