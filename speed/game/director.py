@@ -34,7 +34,7 @@ class Director:
         self._output_service = output_service
         self._score = Score()
         self._buffer = Buffer()
-        
+
 
         self._words = [Word() for i in range(STARTING_WORDS)]
         # for i in range (STARTING_WORDS):
@@ -62,7 +62,7 @@ class Director:
             self (Director): An instance of Director.
         """
 
-       
+    
         
 
         # set key equal to input service get letter self._buffer.get_letter())
