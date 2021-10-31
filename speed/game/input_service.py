@@ -37,5 +37,4 @@ class InputService:
                 result = "*"
             elif event >= 97 and event <= 122: 
                 result = chr(event)
-            print(event)
         return result
