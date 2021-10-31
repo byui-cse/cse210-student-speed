@@ -22,8 +22,8 @@ class Word(Actor):
         self.all_words = constants.LIBRARY
         self.new_word = random.choice(self.all_words)
         self._points = len(self.new_word)
-        x = random.randint(1, constants.MAX_X - 2)
-        y = random.randint(1, constants.MAX_Y - 2)
+        x = random.randint(2, constants.MAX_X)
+        y = random.randint(2, constants.MAX_Y)
         self._position =Point(x,y)
         self._velocity = Point(1,0)
         

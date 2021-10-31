@@ -31,13 +31,6 @@ class Buffer:
             list: The buffers's segments.
         """
         return self._segments
-
-    def convert_to_string(self):
-        string = ""
-        for i in self._segments[1:]:
-            string += i.get_text()
-        
-        return string
     
     def add_letters(self, letter):
         """
@@ -51,7 +44,7 @@ class Buffer:
         if letter == "*":
             self._prepare_buffer()
         else:
-            self._add_segment(letter,Point(len(letter),constants.MAX_Y), Point(0.0))
+            self._add_segment(letter,Point(len(letter),constants.MAX_Y), Point(0,0))
 
     def _add_segment(self, text, position, velocity):
         """Adds a new segment to the buffer using the given text, position and velocity.
@@ -79,3 +72,13 @@ class Buffer:
         position = Point(1,constants.MAX_Y)
         velocity = Point(0,0)
         self._add_segment(message,velocity, position)
+
+    def convert_to_string(self):
+        """
+        Converts current list item to a text string 
+        """
+        string = ""
+        for i in self._segments[1:]:
+            string += i.get_text()
+        
+        return string
