@@ -23,6 +23,7 @@ class Word(Actor):
         self._points = 0
         self.set_text("")
         self.reset()
+        self._word= constants.Library[i]
 
     
     def get_points(self):
@@ -36,10 +37,6 @@ class Word(Actor):
         return self._points
 
     def get_text(self):
-        pass
-
-    def get_points(self):
-        return self._points
         pass
 
     def check_word():
@@ -62,6 +59,7 @@ class Word(Actor):
         Args:
             self (Food): an instance of Food.
         """
+        self.set_text(random.choice(constants.LIBRARY)) # get word from constants Library
         self._points = random.randint(1, 5)
         x = random.randint(1, constants.MAX_X - 2)
         y = random.randint(1, constants.MAX_Y - 2)
