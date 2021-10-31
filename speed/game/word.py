@@ -27,9 +27,19 @@ class Word(Actor):
         #self._position =Point(x,y)
         #self._velocity = Point(1,0)
         super().__init__()
+
         self.set_text(constants.LIBRARY[random.randint(0, len(constants.LIBRARY) - 1)])
         self.set_position(Point(0, random.randint(constants.MAX_Y / 4, constants.MAX_Y - 4))) 
         self.set_velocity(Point(random.randint(1, 3), 0))
+
+        self.all_words = constants.LIBRARY
+        self.new_word = random.choice(self.all_words)
+        self._points = len(self.new_word)
+        x = random.randint(2, constants.MAX_X)
+        y = random.randint(2, constants.MAX_Y)
+        self._position =Point(x,y)
+        self._velocity = Point(1,0)
+
         
     
     def move_text(self):
