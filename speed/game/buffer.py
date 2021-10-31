@@ -1,31 +1,19 @@
 from game import constants
 from game.actor import Actor
-from game.point import Point
 
-class Buffer:
-    """A limbless reptile. The responsibility of Snake is keep track of its segments. It contains methods for moving and growing among others.
-
-    Stereotype:
-        Structurer, Information Holder
-
-    Attributes:
-        _segments: The list of words to use (a list of Actor instances)
-    """
+class Buffer(Actor):
     def __init__(self):
-        """The class constructor.
-        
-        Args:
-            self (Buffer): An instance of Buffer.
-        """
         super().__init__()
-        self._segments = []
-        self._prepare_buffer()
-    
-    def get_all(self):
-        """Gets all the stored segments.
-        
-        Args:
-            self (Buffer): An instance of buffer.
+        self.chars = ''
+        self._position._y = constants.MAX_Y - 1
+
+
+    def add_char(self, char):
+        self.chars += char
+        self.set_text(f'Buffer:{self.chars}')
+
+    def get_chars(self):
+        return self.chars
 
         Returns:
             list: The buffers's segments.
@@ -37,13 +25,18 @@ class Buffer:
             If enter key is hit clear and reset buffer if not retreve the letters form the input 
             service and returns the value to the buffer.
 
-        Args:
-            self (Buffer): An instance of buffer.
-            direction (Point): The direction to move.
-        """
-        if letter == "*":
-            self._prepare_buffer()
+
+    def compare(self, string):
+        if (string in self.chars):
+            return True
         else:
+
+            return False
+
+    def reset_buffer(self):
+        self.chars = ''
+        self.set_text(f'Buffer:{self.chars}')
+
             self._add_segment(letter,Point(len(letter),constants.MAX_Y), Point(0,0))
 
     def _add_segment(self, text, position, velocity):
@@ -82,4 +75,5 @@ class Buffer:
             string += i.get_text()
         
         return string
+
 

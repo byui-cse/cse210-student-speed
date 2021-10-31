@@ -1,9 +1,8 @@
 from time import sleep
-from game import constants
 from game.score import Score
 from game.word import Word
 from game.buffer import Buffer
-
+from game import constants
 class Director:
     """A code template for a person who directs the game. The responsibility of 
     this class of objects is to control the sequence of play.
@@ -25,12 +24,9 @@ class Director:
             self (Director): an instance of Director.
         """
         self._words = []
-        for i in range (constants.STARTING_WORDS):
-            word = Word()
-            self._words.append(word)
-        self._input_service = input_service
+        self.input_service = input_service
         self._keep_playing = True
-        self._output_service = output_service
+        self.output_service = output_service
         self._score = Score()
         self._buffer = Buffer()
 
@@ -41,6 +37,9 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
+        for i in range(8):
+            self._words.append(Word())
+            
         while self._keep_playing:
             self._get_inputs()
             self._do_updates()
@@ -54,9 +53,10 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        self._buffer.add_letters(self._input_service.get_letter())
-        for word in self._words:
-            word.move_next()
+        #self._buffer.add_letters(self._input_service.get_letter())
+        #for word in self._words:
+           # word.move_next()
+        self._buffer.add_char(self.input_service.get_letter())
 
     def _do_updates(self):
         """Updates the important game information for each round of play. In 
@@ -65,7 +65,23 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        self._check_word()
+        for word in self._words:
+            word.move_next()
+            if(not word.check()):
+                # Checking if word has moved off of the screen and needs to be replaced
+                self._words.remove(word)
+                self._words.append(Word())
+        if not len(self._buffer.get_chars()) == 0: 
+            recent_char = self._buffer.get_chars()[len(self._buffer.get_chars()) - 1]
+            if (recent_char == '*'):
+                self._buffer.reset_buffer()
+            else:
+                for word in self._words:
+                    if (self._buffer.compare(word.get_text())):
+                        self._score.add_points(1)
+                        self._words.remove(word)
+                        self._words.append(Word())
+                        continue
         
     def _do_outputs(self):
         """
@@ -74,13 +90,20 @@ class Director:
             self (Director): An instance of Director.
         """
         
-        self._output_service.clear_screen()
+        self.output_service.clear_screen()
+        self.output_service.draw_actor(self._score)
         for word in self._words:
+
+            self.output_service.draw_actor(word)
+        self.output_service.draw_actor(self._buffer)
+        self.output_service.flush_buffer()
+
             self._output_service.draw_actor(word)
         self._output_service.draw_actors(self._buffer.get_all())
         self._output_service.draw_actor(self._score)
         self._output_service.print_text(self._buffer.convert_to_string())
         self._output_service.flush_buffer()
+
 
     def _check_word(self):
         """

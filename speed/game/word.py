@@ -18,7 +18,20 @@ class Word(Actor):
         Args:
             self (Actor): an instance of Actor.
         """
+        #super().__init__()
+        #self.all_words = constants.LIBRARY
+        #self.new_word = random.choice(self.all_words)
+        #self._points = len(self.new_word)
+        #x = random.randint(1, constants.MAX_X - 2)
+        #y = random.randint(1, constants.MAX_Y - 2)
+        #self._position =Point(x,y)
+        #self._velocity = Point(1,0)
         super().__init__()
+
+        self.set_text(constants.LIBRARY[random.randint(0, len(constants.LIBRARY) - 1)])
+        self.set_position(Point(0, random.randint(constants.MAX_Y / 4, constants.MAX_Y - 4))) 
+        self.set_velocity(Point(random.randint(1, 3), 0))
+
         self.all_words = constants.LIBRARY
         self.new_word = random.choice(self.all_words)
         self._points = len(self.new_word)
@@ -26,28 +39,20 @@ class Word(Actor):
         y = random.randint(2, constants.MAX_Y)
         self._position =Point(x,y)
         self._velocity = Point(1,0)
+
         
     
-    def get_points(self):
-        """Gets the points this word is worth.
-        
-        Args:
-            self (Word): an instance of Word.
-        Returns:
-            integer: The points this Word is worth.
-        """
-        return self._points
+    def move_text(self):
+        self.set_position(self.get_position().add(self.get_velocity()))        
 
-    def reset(self):
+    
+    
+    def check(self):
         """Resets the words by moving it to a random position within the boundaries of the screen and reassigning the points to a random number.
         
         Args:
             self (Word): an instance of Word.
         """
-        self.all_words = constants.LIBRARY
-        self.new_word = random.choice(self.all_words)
-        self._points = len(self.new_word)
-        x = random.randint(1, constants.MAX_X - 2)
-        y = random.randint(1, constants.MAX_Y - 2)
-        self._position =Point(x,y)
-        self._velocity = Point(1,0)
+        if (self.get_position().get_x() + (len(self.get_text()) - 1) > constants.MAX_X):
+            return False
+        return True
