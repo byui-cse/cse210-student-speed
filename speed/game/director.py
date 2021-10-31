@@ -97,13 +97,13 @@ class Director:
             self.output_service.draw_actor(word)
         self.output_service.draw_actor(self._buffer)
         self.output_service.flush_buffer()
-
+        """
             self._output_service.draw_actor(word)
         self._output_service.draw_actors(self._buffer.get_all())
         self._output_service.draw_actor(self._score)
         self._output_service.print_text(self._buffer.convert_to_string())
         self._output_service.flush_buffer()
-
+        """
 
     def _check_word(self):
         """

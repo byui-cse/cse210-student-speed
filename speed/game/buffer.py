@@ -1,5 +1,6 @@
 from game import constants
 from game.actor import Actor
+from game.point import Point
 
 class Buffer(Actor):
     def __init__(self):
@@ -15,6 +16,7 @@ class Buffer(Actor):
     def get_chars(self):
         return self.chars
 
+        """
         Returns:
             list: The buffers's segments.
         """
@@ -24,6 +26,7 @@ class Buffer(Actor):
         """
             If enter key is hit clear and reset buffer if not retreve the letters form the input 
             service and returns the value to the buffer.
+        """
 
 
     def compare(self, string):
@@ -37,7 +40,7 @@ class Buffer(Actor):
         self.chars = ''
         self.set_text(f'Buffer:{self.chars}')
 
-            self._add_segment(letter,Point(len(letter),constants.MAX_Y), Point(0,0))
+        #self._add_segment(letter,Point(len(letter),constants.MAX_Y), Point(0,0))
 
     def _add_segment(self, text, position, velocity):
         """Adds a new segment to the buffer using the given text, position and velocity.
