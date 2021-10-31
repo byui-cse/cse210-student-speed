@@ -9,7 +9,7 @@ class Buffer:
         Structurer, Information Holder
 
     Attributes:
-        _body (List): The snake's body (a list of Actor instances)
+        _segments: The list of words to use (a list of Actor instances)
     """
     def __init__(self):
         """The class constructor.
@@ -82,3 +82,4 @@ class Buffer:
             string += i.get_text()
         
         return string
+
