@@ -36,6 +36,7 @@ class Word(Actor):
         self.set_position(self.get_position().add(self.get_velocity()))        
 
     
+    
     def check(self):
         """Resets the words by moving it to a random position within the boundaries of the screen and reassigning the points to a random number.
         
