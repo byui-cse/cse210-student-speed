@@ -10,7 +10,14 @@ class Word(Actor):
         Information Holder
     Attributes: 
         _points (integer): The number of points the food is worth.
+
+
+        Attributes of actor 
+        _text (string): The textual representation of the actor.
+        _position (Point): The actor's position in 2d space.
+        _velocity (Point): The actor's speed and direction.
     """
+
     def __init__(self):
         """The class constructor. Invokes the superclass constructor, set's the 
         text and moves the food to a random position within the boundary of the 
@@ -20,7 +27,7 @@ class Word(Actor):
             self (Actor): an instance of Actor.
         """
         super().__init__()
-        self._points = 0
+        self._points = 0 # sets the points 
         self.set_text("")
         self.reset()
         self._word= constants.Library[i]
