@@ -39,5 +39,11 @@ root                    (project root folder)
 * Asciimatics 1.12.0
 
 ## Authors
+andrew Finlayson AFinlayson82@gmail.com
+Pierre Phil Bangay pierrephild@gmail.com
+Jeremy Diamond socjeremyd@gmail.com
+Ryder Garache gryderjose@gmail.com
+Alirio Mieres mie21001@byui.edu
 ---
 * # TODO: Add names and emails here
+
